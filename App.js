@@ -12,13 +12,14 @@ import MainScreen from "./components/Main"
 import AddScreen from './components/main/Add'
 import ProfileScreen from './components/main/Profile'
 import ChatsScreen from './components/main/Chats'
-import * as Config from './utils/Config'
+import fbConfig from './utils/Config'
 const Stack = createStackNavigator();
 
 //firebase setup
 import firebase from 'firebase/app';
 
-const firebaseConfig = Config.fireBaseCondig;
+const firebaseConfig = fbConfig;
+console.log(firebaseConfig);
 
 if(firebase.apps.length === 0)
 {
