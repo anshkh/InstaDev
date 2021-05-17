@@ -3,7 +3,7 @@ import { StyleSheet, Text, View,Button,Image} from 'react-native';
 import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 
-export default function App() {
+export default function App({navigation}) {
     const [hasCameraPermission, setHasCameraPermission] = useState(null);
     const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
     const [camera, setCamera] = useState(null);
@@ -27,8 +27,6 @@ export default function App() {
           quality: 1,
         });
     
-        console.log(result);
-    
         if (!result.cancelled) {
           setImage(result.uri);
         }
@@ -40,8 +38,6 @@ export default function App() {
             setImage(data.uri);
         }
     }
-    console.log("Camera: " + hasCameraPermission);
-    console.log("Galler" + hasGalleryPermission);
     if (hasCameraPermission === null || hasGalleryPermission === false) {
         return (
             <View>
@@ -78,6 +74,10 @@ export default function App() {
           <Button title="Pick from Gallery" 
             onPress={
                 () => pickImage()
+            } />
+          <Button title="Save" 
+            onPress={
+                () => navigation.navigate('Save',{image})
             } />
     </View >
   );

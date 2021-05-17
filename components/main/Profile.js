@@ -1,8 +1,9 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { FlatList, View, Image, Text } from 'react-native'
 import {GlobalStyles} from '../../utils/style/GlobalStyles'
+import { connect } from 'react-redux'
 
-export default function Profile() {
+function Profile() {
     return (
         <View style={GlobalStyles.droidSafeArea}>
             <Text>
@@ -11,3 +12,11 @@ export default function Profile() {
         </View>
     )
 }
+
+const mapStateToProps =  (store) => ({
+    currentUser : store.userState.currentUser,
+    posts : store.userState.posts
+});
+const mapDispatchProps = (dispatch) => bindActionCreators({fetchUser, fetchUserPosts},dispatch)
+
+export default connect(mapDispatchProps,null)(Profile);
